@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <servlet>
+    <description>JAX-RS Tools Generated - Do not modify</description>
+    <servlet-name>landservlet</servlet-name>
+    <servlet-class>com.android.landandregister.landservlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>registerservlet</servlet-name>
+    <servlet-class>com.android.landandregister.registerservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>getgps</servlet-name>
+    <servlet-class>com.gps.sendgps</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>getstatus</servlet-name>
+    <servlet-class>com.parking.space.sendstatus</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>changestatus</servlet-name>
+    <servlet-class>com.status.changestatus</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>stopandcost</servlet-name>
+    <servlet-class>com.stop.cost.stopcost</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>getcost</servlet-name>
+    <servlet-class>com.stop.cost.cost</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>loginservlet</servlet-name>
+    <servlet-class>com.web.loginservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>signupservlet</servlet-name>
+    <servlet-class>com.web.signupservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>personalservlet</servlet-name>
+    <servlet-class>com.web.personalservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>indexservlet</servlet-name>
+    <servlet-class>com.web.indexservlet</servlet-class>
+  </servlet>
+
+
+
+  
+  <servlet-mapping>
+    <servlet-name>landservlet</servlet-name>
+    <url-pattern>/landservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>registerservlet</servlet-name>
+    <url-pattern>/registerservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getgps</servlet-name>
+    <url-pattern>/getgps</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getstatus</servlet-name>
+    <url-pattern>/getstatus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>changestatus</servlet-name>
+    <url-pattern>/changestatus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>stopandcost</servlet-name>
+    <url-pattern>/stopandcost</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getcost</servlet-name>
+    <url-pattern>/getcost</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>loginservlet</servlet-name>
+    <url-pattern>/loginservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>signupservlet</servlet-name>
+    <url-pattern>/signupservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>personalservlet</servlet-name>
+    <url-pattern>/personalservlet</url-pattern>s
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>indexservlet</servlet-name>
+    <url-pattern>/indexservlet</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>signin.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - stopcar@localhost" uuid="3def6b23-18d9-48a6-b471-2c1bd25ebc73">
+    <database-info product="MySQL" version="5.5.46-0ubuntu0.14.04.2" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.2">
+      <schema id="1" name="stopcar"/>
+      <table id="2" parent="1" name="parking"/>
+      <table id="3" parent="1" name="parking_space"/>
+      <table id="4" parent="1" name="user"/>
+      <column id="5" parent="2" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(4)</data-type>
+      </column>
+      <column id="6" parent="2" name="name">
+        <mandatory>1</mandatory>
+        <data-type>char(20)</data-type>
+      </column>
+      <column id="7" parent="2" name="password">
+        <mandatory>1</mandatory>
+        <data-type>char(20)</data-type>
+      </column>
+      <column id="8" parent="2" name="longitude">
+        <mandatory>1</mandatory>
+        <data-type>double(10,6)</data-type>
+        <default-expression>&apos;0.000000&apos;</default-expression>
+      </column>
+      <column id="9" parent="2" name="latitude">
+        <mandatory>1</mandatory>
+        <data-type>double(10,6)</data-type>
+        <default-expression>&apos;0.000000&apos;</default-expression>
+      </column>
+      <column id="10" parent="2" name="number">
+        <mandatory>1</mandatory>
+        <data-type>int(4)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <key id="11" parent="2" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="12" parent="3" name="number">
+        <mandatory>1</mandatory>
+        <data-type>int(4)</data-type>
+      </column>
+      <column id="13" parent="3" name="parking_id">
+        <mandatory>1</mandatory>
+        <data-type>int(4)</data-type>
+      </column>
+      <column id="14" parent="3" name="status">
+        <mandatory>1</mandatory>
+        <data-type>int(4)</data-type>
+      </column>
+      <column id="15" parent="3" name="name">
+        <data-type>char(20)</data-type>
+      </column>
+      <column id="16" parent="4" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(4)</data-type>
+      </column>
+      <column id="17" parent="4" name="name">
+        <mandatory>1</mandatory>
+        <data-type>char(20)</data-type>
+      </column>
+      <column id="18" parent="4" name="password">
+        <mandatory>1</mandatory>
+        <data-type>char(20)</data-type>
+      </column>
+      <column id="19" parent="4" name="cost">
+        <mandatory>1</mandatory>
+        <data-type>double(10,2)</data-type>
+        <default-expression>&apos;0.00&apos;</default-expression>
+      </column>
+      <column id="20" parent="4" name="parking_id">
+        <data-type>int(4)</data-type>
+      </column>
+      <key id="21" parent="4" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>
