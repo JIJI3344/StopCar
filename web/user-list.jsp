@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.web.loginservlet" %>
+<%@ page import="com.mysql.parkingspacedata" %><%--
   Created by IntelliJ IDEA.
   User: zhe-wang
   Date: 15-11-12
@@ -30,9 +31,6 @@
     <!-- libraries -->
     <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
 
-    <!-- this page specific styles -->
-    <link rel="stylesheet" href="css/compiled/user-list.css" type="text/css" media="screen" />
-
     <!-- open sans font -->
     <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
 
@@ -54,15 +52,15 @@
         <div id="sidebar-nav">
             <ul id="dashboard-menu">
                 <li>
-                    <a href="index.html">
+                    <a href="index.jsp">
                         <i class="icon-home"></i>
-                        <span>Home</span>
+                        <span>主页</span>
                     </a>
                 </li>
                 <li>
-                    <a href="chart-showcase.html">
+                    <a href="chart.jsp">
                         <i class="icon-signal"></i>
-                        <span>Charts</span>
+                        <span>分析</span>
                     </a>
                 </li>
                 <li class="active">
@@ -72,24 +70,24 @@
                     </div>
                     <a class="dropdown-toggle" href="#">
                         <i class="icon-group"></i>
-                        <span>Users</span>
+                        <span>车主</span>
                     </a>
                 </li>
                 <li>
-                    <a href="personal-info.html">
+                    <a href="personal.jsp">
                         <i class="icon-cog"></i>
-                        <span>My Info</span>
+                        <span>设置</span>
                     </a>
                 </li>
                 <li>
                     <a class="dropdown-toggle" href="#">
                         <i class="icon-share-alt"></i>
-                        <span>Extras</span>
+                        <span>登出</span>
                         <i class="icon-chevron-down"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="signin.html">Sign in</a></li>
-                        <li><a href="signup.html">Sign up</a></li>
+                        <li><a href="signin.jsp">登录</a></li>
+                        <li><a href="signup.jsp">注册</a></li>
                     </ul>
                 </li>
             </ul>
@@ -113,14 +111,14 @@
             <div class="container-fluid">
                 <div id="pad-wrapper" class="users-list">
                     <div class="row-fluid header">
-                        <h3>Users</h3>
+                        <%--<h4 class="title">车主</h4>--%>
                         <div class="span10 pull-right">
                             <input type="text" class="span5 search" placeholder="Type a user's name..." />
 
                             <!-- custom popup filter -->
                             <!-- styles are located in css/elements.css -->
                             <!-- script that enables this dropdown is located in js/theme.js -->
-                            <div class="ui-dropdown">
+                      <%--      <div class="ui-dropdown">
                                 <div class="head" data-toggle="tooltip" title="Click me!">
                                     Filter users
                                     <i class="arrow-down"></i>
@@ -154,12 +152,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
 
-                            <a href="new-user.html" class="btn-flat success pull-right">
+  <%--                          <a href="new-user.html" class="btn-flat success pull-right">
                                 <span>&#43;</span>
                                 NEW USER
-                            </a>
+                            </a>--%>
                         </div>
                     </div>
 
@@ -169,22 +167,22 @@
                             <thead>
                             <tr>
                                 <th class="span4 sortable">
-                                    Name
+                                    车主帐户
                                 </th>
                                 <th class="span3 sortable">
-                                    <span class="line"></span>Signed up
+                                    <span class="line"></span>状态
                                 </th>
                                 <th class="span2 sortable">
-                                    <span class="line"></span>Total spent
+                                    <span class="line"></span>停车位
                                 </th>
-                                <th class="span3 sortable align-right">
-                                    <span class="line"></span>Email
+                                <th class="span3 sortable">
+                                    <span class="line"></span>预定/停车时间
                                 </th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tbody">
                             <!-- row -->
-                            <tr class="first">
+<%--                            <tr class="first">
                                 <td>
                                     <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
                                     <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
@@ -335,11 +333,11 @@
                                 <td class="align-right">
                                     <a href="#">alejandra@canvas.com</a>
                                 </td>
-                            </tr>
+                            </tr>--%>
                             </tbody>
                         </table>
                     </div>
-                    <div class="pagination pull-right">
+<%--                    <div class="pagination pull-right">
                         <ul>
                             <li><a href="#">&#8249;</a></li>
                             <li><a class="active" href="#">1</a></li>
@@ -349,7 +347,7 @@
                             <li><a href="#">5</a></li>
                             <li><a href="#">&#8250;</a></li>
                         </ul>
-                    </div>
+                    </div>--%>
                     <!-- end users table -->
                 </div>
             </div>
@@ -362,6 +360,87 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/theme.js"></script>
         <script type="text/javascript">
+            <%
+                parkingspacedata Parkingspacedata=new parkingspacedata();
+                Parkingspacedata.getstatus("select * from parking_space where status !=0 and parking_id="+loginservlet.id);
+            %>
+            var GetUser=eval(<%=Parkingspacedata.UserListData()%>);
+            var Name = new Array();
+            var Status = new Array();
+            var Number = new Array();
+            var Time = new Array();
+            for(var i = 0; i<GetUser.length; i++){
+                if(GetUser.status!=0){
+                    Name[i]=GetUser[i].name;
+
+                    Number[i]="00"+GetUser[i].number+"号";
+
+                     if(GetUser[i].status==1){
+                        Status[i]="预定";
+                    }else {
+                        Status[i]="使用";
+                    }
+
+                    Time[i]= GetUser[i].time;
+                }else{
+                    continue;
+                }
+
+            }
+
+            function add(index){
+
+                var tr = document.createElement("tr");
+                tr.id="first"+index;
+                document.getElementById("tbody").appendChild(tr);
+
+                var td = document.createElement("td");
+                td.id="td"+index;
+                document.getElementById("first"+index).appendChild(td);
+
+                var span = document.createElement("span");
+                span.id="name"+index;
+                document.getElementById("td"+index).appendChild(span);
+
+                var td = document.createElement("td");
+                td.id="status"+index;
+                document.getElementById("first"+index).appendChild(td);
+
+                var td = document.createElement("td");
+                td.id="number"+index;
+                document.getElementById("first"+index).appendChild(td);
+
+                var td = document.createElement("td");
+                td.id="time"+index;
+                document.getElementById("first"+index).appendChild(td);
+
+            }
+
+            function change(dataIndex){
+                document.getElementById("name"+dataIndex).innerHTML=Name[dataIndex];
+                document.getElementById("number"+dataIndex).innerHTML=Number[dataIndex];
+                document.getElementById("status"+dataIndex).innerHTML=Status[dataIndex];
+
+                if(Time[dataIndex]==null){
+                    document.getElementById("time"+dataIndex).innerHTML="";
+                }else {
+                    document.getElementById("time"+dataIndex).innerHTML=Time[dataIndex];
+                }
+            }
+            if(GetUser.length<9){
+                for(i = 0 ; i < GetUser.length; i++){
+                    add(i);
+                    change(i);
+                }
+            }else {
+                /*for(var j =i  ; j < 10 ; j++){
+                    add(j);
+                    change(j);
+                }*/
+            }
+
+
+
             function Darkskin(){
                 document.getElementById("content").style.backgroundColor='#28303a';
                 document.getElementById("sidebar-nav").style.backgroundColor='#28303a';

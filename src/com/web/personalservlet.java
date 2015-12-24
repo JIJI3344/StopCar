@@ -30,15 +30,15 @@ public class personalservlet extends HttpServlet {
 
         DBUtil dbUtil = new DBUtil();
         boolean result=dbUtil.Add("update parking set number="+number+" ,longitude="+longitude+" ," +
-                "latitude="+latitude+" where id="+signupservlet.id);
+                "latitude="+latitude+" where id="+loginservlet.id);
         if(result==true){
-            forward="/s.jsp";
+            forward="/index.jsp";
         }else {
             req.setAttribute("result", result);
             forward="/personal.jsp";
         }
         for (int i = 1 ; i <= Integer.parseInt(number) ; i ++){
-            dbUtil.Add("insert into parking_space values ("+ i + "," +signupservlet.id+ ",0)");
+            dbUtil.Add("insert into parking_space values ("+ i + "," +loginservlet.id+ ",0)");
         }
 
         rd =req.getRequestDispatcher(forward);

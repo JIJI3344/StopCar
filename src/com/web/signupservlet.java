@@ -12,7 +12,6 @@ import com.mysql.getid;
 
 public class signupservlet extends HttpServlet {
 
-	public static String id = null;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -37,7 +36,7 @@ public class signupservlet extends HttpServlet {
 	    }else {
 			dbUtil.Addusr("insert into parking (name,password) values (?,?)", new String[]{name,password});
 			GetID.GetID("select * from parking where name=" + name);
-			id=GetID.id;
+			loginservlet.id=GetID.id;
 		    forward="/personal.jsp";
 		}
 

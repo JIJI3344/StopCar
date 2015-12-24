@@ -21,6 +21,7 @@ public class parkingdata {
 	private String latis;
 	
 	private List<parking> list;
+	public static int parkingNumber=0;
 	
 	public int getgps(String sql) {
 		
@@ -29,28 +30,34 @@ public class parkingdata {
         list = new ArrayList<parking>();
 		longs = null;
 		latis = null;
+		String id = null;
         if (conn==null) {
 			System.out.println("conn is null!");
 		}
         else{
         	try {  
-        		for (int i = 1; i < 5; i++) {
-                    ps=(PreparedStatement) conn.prepareStatement(sql+i);
+        		//for (int i = 1; i < 5; i++) {
+                    ps=(PreparedStatement) conn.prepareStatement(sql);
                     result=(ResultSet) ps.executeQuery();
-                    if(result.next())
-                    {  
-                    	longs=result.getString("longtitude");
+                    while(result.next())
+                    {
+						id = result.getString("id");
+                    	longs=result.getString("longitude");
                     	latis=result.getString("latitude");
-//                        System.out.println(longs);
-//                        System.out.println(latis);
+						System.out.println(longs);
+                        System.out.println(latis);
+
+						parking parking= new parking();
+						parking.setId(id);
+						parking.setlatitude(latis);
+						parking.setLongtitude(longs);
+						list.add(parking);
+
+						parkingNumber++;
                     }
-                    parking parking= new parking();
-                    parking.setId(String.valueOf(i));
-                    parking.setlatitude(latis);
-                    parking.setLongtitude(longs);
-                    list.add(parking);
-        		}
-				}catch (SQLException e) {  
+
+        		//}
+				}catch (SQLException e) {
 	                e.printStackTrace();  
 	            }  
         	}
@@ -59,11 +66,10 @@ public class parkingdata {
 	public String data(){
 	    JSONArray array=new JSONArray();
 		for(parking parking:list){
-
 			JSONObject obj=new JSONObject();
 			try{
 				obj.put("id", parking.getId());
-				obj.put("longtitude", parking.getLongtitude());
+				obj.put("longitude", parking.getLongtitude());
 				obj.put("latitude", parking.getLatitude());
 			}catch (Exception e) {
 				// TODO: handle exception

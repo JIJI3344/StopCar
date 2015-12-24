@@ -32,7 +32,7 @@ public class getid {
             if(result.next())                                      //�����������ڴ��ݹ��������(�ֶ�)�ļ�¼����true
             {
                 id=result.getString("id");
-                System.out.println("id"+id);
+                System.out.println("id为："+id);
             }
         }catch (SQLException e) {
             e.printStackTrace();

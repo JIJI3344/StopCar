@@ -22,7 +22,6 @@
 <%@ page import="java.sql.SQLException"%>
 <%@ page import="com.web.loginservlet" %>
 <%@ page import="com.mysql.parkingspacedata" %>
-<%@ page import="com.mysql.web" %>
 <%--<% response.setHeader("Refresh", "10"); %>
 <% String currTime = new java.util.Date().toString();
     out.println(currTime); %>--%>
@@ -63,27 +62,19 @@
         parkingspacedata Parkingspacedata=new parkingspacedata();
         Parkingspacedata.getstatus("select * from parking_space where parking_id=9");
     %>
-    var GetStatus=eval(<%=parkingspacedata.data()%>);
+    var GetStatus=eval(<%=parkingspacedata.UserListData()%>);
   /*  for(var i =0 ; i<Status.length ; i++){
         alert(Status[i].number);
         alert(Status[i].status);
     }*/
     var Number = new Array();
     for(var i = 0 ; i<GetStatus.length ; i++){
-        Number[i]=GetStatus[i].number;
+        var myDate=new Date(GetStatus[i].time);
+        alert(myDate);
+        var Month = myDate.getMonth();
+        alert(Month);
+
     }
-    var Status = new Array();
-    for(var j = 0 ; j<GetStatus.length ; j++){
-        if(GetStatus[j].status==0){
-            Status[j]="空闲";
-        }else  if(GetStatus[j].status==1){
-            Status[j]="被预定";
-        }else {
-            Status[j]="在使用";
-        }
-    }
-    alert(Number[0]);
-    alert(Status[0]);
 
 </script>
 </body>

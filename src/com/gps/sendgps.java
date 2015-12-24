@@ -27,7 +27,7 @@ public class sendgps extends HttpServlet{
 		
 	    
 	    parkingdata parkingdata =new parkingdata();
-	    parkingdata.getgps("select * from parking where id=");
+	    parkingdata.getgps("select * from parking");
 	    
 		out.write(parkingdata.data());
 		out.flush();

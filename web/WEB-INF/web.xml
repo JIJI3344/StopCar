@@ -14,6 +14,7 @@
     <servlet-name>getgps</servlet-name>
     <servlet-class>com.gps.sendgps</servlet-class>
   </servlet>
+
   <servlet>
     <servlet-name>getstatus</servlet-name>
     <servlet-class>com.parking.space.sendstatus</servlet-class>
@@ -42,10 +43,7 @@
     <servlet-name>personalservlet</servlet-name>
     <servlet-class>com.web.personalservlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>indexservlet</servlet-name>
-    <servlet-class>com.web.indexservlet</servlet-class>
-  </servlet>
+
 
 
 
@@ -86,14 +84,12 @@
     <servlet-name>signupservlet</servlet-name>
     <url-pattern>/signupservlet</url-pattern>
   </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>personalservlet</servlet-name>
-    <url-pattern>/personalservlet</url-pattern>s
+    <url-pattern>/personalservlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>indexservlet</servlet-name>
-    <url-pattern>/indexservlet</url-pattern>
-  </servlet-mapping>
+
 
   <welcome-file-list>
     <welcome-file>signin.jsp</welcome-file>
