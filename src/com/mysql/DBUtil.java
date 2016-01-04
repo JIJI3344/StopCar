@@ -1,13 +1,12 @@
 package com.mysql;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.DriverManager;  
+import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;  
-
-
-import com.mysql.jdbc.PreparedStatement;  
+import java.sql.SQLException;
 /*访问数据库工具类：获取数据库链接*/  
 public class DBUtil {  
     private String dbName = "stopcar";   //name
@@ -120,6 +119,7 @@ public class DBUtil {
     {
         boolean flag=false;
 
+        System.out.println(sql);
 
         conn=getConn();     //获得数据库链接
         if (conn==null) {

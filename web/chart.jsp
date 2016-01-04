@@ -193,22 +193,22 @@
             formatter: function (y) { return y + "%" }
         });
 
-        <%
+/*        <%
         getstatistics GstStatistics = new getstatistics();
         GstStatistics.getstatistics("select * from statistics where parking_id="+loginservlet.id);
         %>
         var Statistics =eval(<%=GstStatistics.data()%>);
 
         var myDate=new Date(GetChart[i].time);
-        var Month = myDate.getMonth()+1;
+        var Month = myDate.getMonth()+1;*/
 
         //  jQuery Flot Chart
         var visits = [[1, 0], [2, 0], [3, 0], [4, 0],[5, 0],[6, 65]];
-        var visitors = [[1, 00], [2,0], [3, 0], [4, 0],[5, 0],[6, 40]];
+        var visitors = [[1,0], [2,0], [3, 0], [4, 0],[5, 0],[6, 40]];
 
         var plot = $.plot($("#statsChart"),
-                [ { data: visits, label: "Signups"},
-                    { data: visitors, label: "Visits" }], {
+                [ { data: visits, label: "停车"},
+                    { data: visitors, label: "预约" }], {
                     series: {
                         lines: { show: true,
                             lineWidth: 1,
@@ -233,8 +233,8 @@
                     },
                     colors: ["#a7b5c5", "#30a0eb"],
                     xaxis: {
-                        ticks: [[1, Month+"-"+myDate], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"],
-                            [7,"JUL"]],
+                        ticks: [[1, "" ], [2, ""], [3, ""], [4,""], [5,""], [6,""],
+                            [7,""]],
                         font: {
                             size: 12,
                             family: "Open Sans, Arial",
@@ -276,7 +276,7 @@
                     var month = item.series.xaxis.ticks[item.dataIndex].label;
 
                     showTooltip(item.pageX, item.pageY,
-                            item.series.label + " of " + month + ": " + y);
+                            item.series.label + "  " + month + ": " + y);
                 }
             }
             else {

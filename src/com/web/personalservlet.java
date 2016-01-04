@@ -38,7 +38,7 @@ public class personalservlet extends HttpServlet {
             forward="/personal.jsp";
         }
         for (int i = 1 ; i <= Integer.parseInt(number) ; i ++){
-            dbUtil.Add("insert into parking_space values ("+ i + "," +loginservlet.id+ ",0)");
+            dbUtil.Add("insert into parking_space values ("+ i + "," +loginservlet.id+ ",0,null,null)");
         }
 
         rd =req.getRequestDispatcher(forward);
@@ -48,6 +48,7 @@ public class personalservlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
+        
     }
 }
 

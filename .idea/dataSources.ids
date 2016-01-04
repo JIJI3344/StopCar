@@ -6,12 +6,12 @@
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.2">
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
       <schema id="1" name="stopcar"/>
       <table id="2" parent="1" name="parking"/>
       <table id="3" parent="1" name="parking_space"/>
-      <table id="4" parent="1" name="user"/>
-      <table id="5" parent="1" name="statistics"/>
+      <table id="4" parent="1" name="statistics"/>
+      <table id="5" parent="1" name="user"/>
       <column id="6" parent="2" name="id">
         <mandatory>1</mandatory>
         <data-type>int(4)</data-type>
@@ -61,49 +61,50 @@
       <column id="17" parent="3" name="time">
         <data-type>timestamp</data-type>
       </column>
-      <column id="18" parent="4" name="id">
+      <column id="18" parent="4" name="book">
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="19" parent="4" name="use">
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="20" parent="4" name="date">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="21" parent="4" name="parking_id">
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="22" parent="4" name="statistics_date_uindex">
+        <columns>date</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="23" parent="4" name="statistics_date_uindex">
+        <columns>date</columns>
+        <underlying-index>statistics_date_uindex</underlying-index>
+      </key>
+      <column id="24" parent="5" name="id">
         <mandatory>1</mandatory>
         <data-type>int(4)</data-type>
       </column>
-      <column id="19" parent="4" name="name">
+      <column id="25" parent="5" name="name">
         <mandatory>1</mandatory>
         <data-type>char(20)</data-type>
       </column>
-      <column id="20" parent="4" name="password">
+      <column id="26" parent="5" name="password">
         <mandatory>1</mandatory>
         <data-type>char(20)</data-type>
       </column>
-      <column id="21" parent="4" name="cost">
+      <column id="27" parent="5" name="cost">
         <mandatory>1</mandatory>
         <data-type>double(10,2)</data-type>
         <default-expression>&apos;0.00&apos;</default-expression>
       </column>
-      <key id="22" parent="4" name="PRIMARY">
+      <key id="28" parent="5" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
-      </key>
-      <column id="23" parent="5" name="book">
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="24" parent="5" name="use">
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="25" parent="5" name="date">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="26" parent="5" name="parking_id">
-        <data-type>int(11)</data-type>
-      </column>
-      <index id="27" parent="5" name="statistics_date_uindex">
-        <columns>date</columns>
-        <unique>1</unique>
-      </index>
-      <key id="28" parent="5" name="statistics_date_uindex">
-        <columns>date</columns>
-        <underlying-index>statistics_date_uindex</underlying-index>
       </key>
     </database-model>
   </data-source>

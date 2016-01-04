@@ -45,7 +45,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
     </script>
 <body>
-    <form action="<%= path %>/personalservlet" method="post">
         <!-- navbar -->
         <div class="navbar navbar-inverse">
             <div class="navbar-inner">
@@ -73,8 +72,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                         <h5 class="personal-title">新建停车厂</h5>
 
-                        <form />
-                            <div class="field-box">
+                        <form action="<%= path %>/personalservlet" method="post">
+
+                        <div class="field-box">
                                 <label>Number:</label>
                                 <input class="span5 inline-input" type="text" value="0" name="number"/>
                             </div>
@@ -136,8 +136,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             //获取当前位置信息
             function getCurrentPosition() {
                 geolocation.getCurrentPosition();
-
-
             }
             getCurrentPosition();
 
@@ -158,7 +156,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
 
         </script>
-    </form>
 
 
 </body>

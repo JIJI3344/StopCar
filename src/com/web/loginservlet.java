@@ -13,7 +13,6 @@ import java.io.IOException;
 
 public class loginservlet extends HttpServlet {
 	public static String id = null;
-	public static String ip = null;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -33,7 +32,6 @@ public class loginservlet extends HttpServlet {
 	    String password = req.getParameter("password");   
 	    System.out.println("name="+name+"password="+password);
 
-		ip=req.getRemoteAddr();
  
 		DBUtil dbUtil = new DBUtil();
 		getid GetID = new getid();
