@@ -1,31 +1,26 @@
 package com.mysql;
 
-import java.sql.Connection;
-
 import com.mysql.jdbc.PreparedStatement;
+
+import java.sql.Connection;
 
 public class stopandcost {
 
 	private Connection conn;  
     private PreparedStatement ps1; 
-    private PreparedStatement ps2; 
-    public boolean stop(String sql1,String sql2){
+    public boolean stop(String sql1){
     	boolean flag=false;
     	DBUtil dbUtil = new DBUtil(); 
-        conn=dbUtil.getConn();     //»ñµÃÊý¾Ý¿âÁ´½Ó  
+        conn=dbUtil.getConn();     //ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½  
         if (conn==null) {
     		System.out.println("conn is null!");
     	}
         else {
         	try {
         		ps1=(PreparedStatement) conn.prepareStatement(sql1); 
-        		ps2=(PreparedStatement) conn.prepareStatement(sql2);
-        		
+
         		int result1=ps1.executeUpdate();
-        		int result2=ps2.executeUpdate();
-        		if((result1*result2)!=0){
         			flag=true;
-        		}
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

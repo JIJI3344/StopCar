@@ -257,6 +257,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/theme.js"></script>
 	<script type="text/javascript">
+        var URL = "http://localhost:8080/stopcar/deleteSpaceServlet";
 		<%
 			parkingspacedata Parkingspacedata=new parkingspacedata();
 			Parkingspacedata.getstatus("select * from parking_space where parking_id="+loginservlet.id);
@@ -266,9 +267,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 alert(GetStatus[i].number);
 		 alert(GetStatus[i].status);
 		 }*/
-		var Number = new Array();
-		var Status = new Array();
-		var Name = new Array();
+		var Number = new Array(GetStatus.length);
+		var Status = new Array(GetStatus.length);
+		var Name = new Array(GetStatus.length);
 		for(var i = 0 ; i<GetStatus.length ; i++){
 			Number[i]="00"+GetStatus[i].number+"号";
 
@@ -314,13 +315,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			ul.id="ul"+index;
 			document.getElementById("edit"+index).appendChild(ul);
 
-			var li = document.createElement("li");
-			li.innerHTML="<a href='#'>Edit</a>";
-			document.getElementById("ul"+index).appendChild(li);
 
 			var li = document.createElement("li");
-			li.innerHTML="<a href='#'>Delete</a>";
+            li.id = "Edit"+index;
 			document.getElementById("ul"+index).appendChild(li);
+
+            var a = document.createElement("a");
+            a.href = "";
+            a.innerHTML="Edit";
+            a.id = "edit-a"+index;
+            document.getElementById("Edit"+index).appendChild(a);
+
+			var li = document.createElement("li");
+			li.id = "delete"+index;
+			document.getElementById("ul"+index).appendChild(li);
+
+            var a = document.createElement("a");
+            a.href = "";
+            a.innerHTML="Delete";
+            a.id = "delete-a"+index;
+            document.getElementById("delete"+index).appendChild(a);
 		}
 
 
@@ -337,14 +351,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}else{
 				document.getElementById("name"+dataIndex).innerHTML="";
 			}
-
+            document.getElementById("delete-a"+dataIndex).href = URL +"?request=delete&number="+GetStatus[dataIndex].number+"&parking_id="+<%=loginservlet.id%>;
 		}
 		for(var m=0; m<GetStatus.length; m++){
 			add(m);
 			change(m);
 		}
-
-
 
 		function Darkskin(){
 			document.getElementById("content").style.backgroundColor='#28303a';

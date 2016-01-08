@@ -1,5 +1,6 @@
 package com.status;
 
+import com.mysql.getstatus;
 import com.mysql.statuschange;
 import com.pc.websocket;
 import net.sf.json.JSONObject;
@@ -30,6 +31,23 @@ public class changestatus extends HttpServlet{
 	    String number = req.getParameter("number"); 
 	    String status = req.getParameter("status");
 		String name = req.getParameter("name");
+
+        getstatus getStatus = new getstatus();
+        getStatus.GetStauts("select status from parking_space where number = "+number +" and parking_id = "+parking_id);
+        String statusOld = getStatus.status;
+
+        if (status.equals("1")){
+            websocket.send(parking_id,number,status);
+            System.out.println("发送状态： "+status);
+        }
+        else if (statusOld .equals("2") && status.equals("0")){
+            System.out.println("车开走了");
+        }else {
+            websocket.send(parking_id,number, String.valueOf(0));
+            System.out.println("发送状态： "+0);
+        }
+
+
 		boolean result;
 	    System.out.println(parking_id+number+status);
 
@@ -58,7 +76,8 @@ public class changestatus extends HttpServlet{
 			}
 		}
 
-		websocket.send(parking_id,number,status);
+
+
 
 		JSONObject jsonObject = new JSONObject();
         System.out.println(result);

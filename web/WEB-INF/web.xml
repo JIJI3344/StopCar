@@ -44,6 +44,10 @@
     <servlet-class>com.web.personalservlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>deleteSpaceServlet</servlet-name>
+    <servlet-class>com.web.DeleteSpaceServlet</servlet-class>
+  </servlet>
 
 
 
@@ -89,7 +93,10 @@
     <servlet-name>personalservlet</servlet-name>
     <url-pattern>/personalservlet</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>deleteSpaceServlet</servlet-name>
+    <url-pattern>/deleteSpaceServlet</url-pattern>
+  </servlet-mapping>
 
   <welcome-file-list>
     <welcome-file>signin.jsp</welcome-file>

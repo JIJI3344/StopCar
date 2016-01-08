@@ -1,16 +1,14 @@
 package com.stop.cost;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import com.mysql.stopandcost;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.mysql.stopandcost;
-
-import net.sf.json.JSONObject;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class stopcost extends HttpServlet{
 	
@@ -28,12 +26,10 @@ public class stopcost extends HttpServlet{
 	    String name = req.getParameter("name"); 
 	    String parking_id = req.getParameter("parking_id");
 	    String number = req.getParameter("number");   
-	    System.out.print(parking_id+number+name+cost);
+	    System.out.println(parking_id+number+name+cost);
 	    
 	    stopandcost stopandcost=new stopandcost();
-	    boolean result=stopandcost.stop("update parking_space set status=0 where parking_id="
-				+parking_id+" and number="+number, "update user set cost=cost+"+cost+" where name="
-						+name);
+	    boolean result=stopandcost.stop("update user set cost=cost+"+cost+" where name=" +name);
 	    JSONObject jsonObject = new JSONObject();
 	    System.out.println(result);
         if (result==true) {
